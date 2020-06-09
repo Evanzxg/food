@@ -1,0 +1,16 @@
+org\evan\pojo\OrderItems.class
+org\evan\bo\UserBo.class
+org\evan\pojo\Orders.class
+org\evan\vo\CategoryVo.class
+org\evan\pojo\ItemsSpec.class
+org\evan\vo\ItemInfoVo.class
+org\evan\pojo\Carousel.class
+org\evan\pojo\OrderStatus.class
+org\evan\pojo\Category.class
+org\evan\vo\CommentLevelCountsVo.class
+org\evan\pojo\Users.class
+org\evan\pojo\ItemsImg.class
+org\evan\pojo\Items.class
+org\evan\pojo\ItemsComments.class
+org\evan\pojo\ItemsParam.class
+org\evan\pojo\UserAddress.class

@@ -1,0 +1,13 @@
+org\evan\mapper\CarouselMapper.class
+org\evan\mapper\CategoryMapper.class
+org\evan\mapper\ItemsMapper.class
+org\evan\mapper\ItemsParamMapper.class
+org\evan\mapper\UsersMapper.class
+org\evan\mapper\UserAddressMapper.class
+org\evan\my\mapper\MyMapper.class
+org\evan\mapper\OrdersMapper.class
+org\evan\mapper\ItemsCommentsMapper.class
+org\evan\mapper\OrderItemsMapper.class
+org\evan\mapper\ItemsSpecMapper.class
+org\evan\mapper\OrderStatusMapper.class
+org\evan\mapper\ItemsImgMapper.class

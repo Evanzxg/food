@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.evan.mapper.ItemsCustomerMapper" >
+
+  <select id="queryItemComments" parameterType="map" resultType="org.evan.vo.CommentVo">
+    SELECT
+      ic.comment_level as commentLevel,
+      ic.content,
+      ic.sepc_name specName,
+      ic.created_time createdTime,
+      u.face userFace,
+      u.nickname as userNickName
+    FROM `items_comments` ic
+    left JOIN users u on ic.user_id=u.id
+    where 1=1
+          <if test="itemId != null and itemId != ''">and ic.item_id=#{itemId}</if>
+          <if test="commentLevel != null">and ic.comment_level=#{commentLevel}</if>
+  </select>
+
+  <select id="searchItems" parameterType="map" resultType="org.evan.vo.ItemSearchVo">
+    SELECT
+      i.id itemId,
+      i.item_name itemName,
+      i.sell_counts sellCounts,
+      ii.url imgUrl,
+      temp.price
+    FROM items i
+     LEFT JOIN items_img ii
+               ON ii.item_id=i.id
+     LEFT JOIN (
+        SELECT item_id,MIN(price_discount) price FROM items_spec GROUP BY item_id
+      ) temp ON temp.item_id=i.id
+    where ii.is_main=1
+    <if test="keywords != null and keywords != ''">
+        and i.item_name like CONCAT('%',#{keywords},'%')
+    </if>
+    order by
+    <choose>
+        <!-- c : 价格排序 -->
+        <!-- p : 销量排序 -->
+        <when test="sort == 'c'.toString() ">i.sell_counts desc</when>
+        <when test="sort == 'p'.toString() ">temp.price asc</when>
+        <otherwise>i.item_name asc</otherwise>
+    </choose>
+  </select>
+
+  <select id="searchItemsByThirdCat" parameterType="map" resultType="org.evan.vo.ItemSearchVo">
+    SELECT
+      i.id itemId,
+      i.item_name itemName,
+      i.sell_counts sellCounts,
+      ii.url imgUrl,
+      temp.price
+    FROM items i
+     LEFT JOIN items_img ii
+               ON ii.item_id=i.id
+     LEFT JOIN (
+        SELECT item_id,MIN(price_discount) price FROM items_spec GROUP BY item_id
+      ) temp ON temp.item_id=i.id
+    where ii.is_main=1 and i.cat_id=#{catId}
+    order by
+    <choose>
+        <!-- c : 价格排序 -->
+        <!-- p : 销量排序 -->
+        <when test="sort == 'c'.toString() ">i.sell_counts desc</when>
+        <when test="sort == 'p'.toString() ">temp.price asc</when>
+        <otherwise>i.item_name asc</otherwise>
+    </choose>
+  </select>
+
+    <select id="queryItemsBySpec" parameterType="list" resultType="org.evan.vo.ShopCartVo">
+        SELECT
+            i.id itemId,
+            i.item_name itemName,
+            img.url itemImgUrl,
+            spec.id specId,
+            spec.`name` specName,
+            spec.price_discount priceDiscount,
+            spec.price_normal priceNormal
+        FROM `items_spec` spec
+         LEFT JOIN items i on i.id=spec.item_id
+         LEFT JOIN items_img img ON img.item_id=i.id
+        where img.is_main=1
+        and spec.id in
+            <foreach collection="ids" open="(" separator="," close=")" item="specId" >
+                #{specId}
+            </foreach>
+    </select>
+
+    <update id="deductInventory">
+        update items_spec set stock = stock-#{byCounts}
+        where id = #{specId} and stock >= #{byCounts}
+    </update>
+</mapper>
