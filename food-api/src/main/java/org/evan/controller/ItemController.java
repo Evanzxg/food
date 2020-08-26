@@ -1,6 +1,5 @@
 package org.evan.controller;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang3.StringUtils;
@@ -28,7 +27,6 @@ import java.util.List;
  * 请把努力当成一种习惯，而不是三分钟热度。每一个你羡慕的收获，都是努力用心拼来的。
  * @author Administrator
  */
-@Api(value = "商品服务相关接口",tags = "商品服务相关接口")
 @RestController
 @RequestMapping("items")
 public class ItemController {

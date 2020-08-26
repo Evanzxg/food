@@ -1,6 +1,8 @@
 package org.evan.service;
 
 import org.evan.bo.SubmitOrderBo;
+import org.evan.enums.OrderStatusEnum;
+import org.evan.pojo.Orders;
 
 /**
  * Constant dropping wears the stone.
@@ -17,5 +19,19 @@ public interface OrderService {
      * @param submitOrderBo
      */
     String create(SubmitOrderBo submitOrderBo);
+
+    /**
+     * 根据ID查询
+     * @param id
+     * @return
+     */
+    Orders get(String id);
+
+    /**
+     * 修改订单状态
+     * @param oid
+     * @param status
+     */
+    void updateOrderStatus(String oid, Integer status);
 }
 

@@ -47,7 +47,7 @@ public class OrderController {
         }
         //1.创建订单
         String orderId =  orderService.create(orderBo);
-        //TODO:整合redis之后,移除购物车中已结算的商品
+        //2.TODO:整合redis之后,移除购物车中已结算的商品
         CookieUtils.setCookie(request,response,SHOPCART,"");
         //3.向支付中心发送当前订单,用于保存支付中心的订单数据
         return Result.success(orderId);
