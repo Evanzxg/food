@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+    <appid>wx632c8f211f8122c6</appid>
+    <body>测试数据</body>
+    <mch_id>1497984412</mch_id>
+    <nonce_str>47cec6c9e21a4efaa485d26a181fae29</nonce_str>
+    <notify_url>http://localhost:8901/api/pay/wxchatnotify.do</notify_url>
+    <out_trade_no>202001010002</out_trade_no>
+    <sign>46022165EF93CA53A67020A7D6ED547F</sign>
+    <spbill_create_ip>127.0.0.1</spbill_create_ip>
+    <total_fee>1</total_fee>
+    <trade_type>NATIVE</trade_type>
+</xml>
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+    <appid>wx632c8f211f8122c6</appid>
+    <body>测试数据</body>
+    <mch_id>1497984412</mch_id>
+    <nonce_str>fa4e9bf474714003b3b94882fb3c3bb8</nonce_str>
+    <notify_url>http://192.168.1.1/callback.do</notify_url>
+    <out_trade_no>20200817</out_trade_no>
+    <sign>B3F7CBB191C4D9AB17DD7C08A33A2F1A</sign>
+    <spbill_create_ip>127.0.0.1</spbill_create_ip>
+    <total_fee>10000</total_fee>
+    <trade_type>NATIVE</trade_type>
+</xml>
+
